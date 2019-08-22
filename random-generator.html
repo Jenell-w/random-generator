@@ -14,21 +14,24 @@
                 <td>Get Random Quote</td>
                 <td><input type="submit"/></td>
             </tr>
-            <tr>
-                <td>Get a Random Pic</td>
-                <td><input id="getapic" type="submit" value="Get a Pic" /></td>
-            </tr>
-        </table>
     </form>
+    <form id='pic-form'>
+              <tr>
+                <td>Get a Random Pic</td>
+                <td><input type="submit" value="Get a Pic" /></td>
+              </tr>
+    </form>
+        </table>
     <p id="random-quote"></p>
     <p id="author"></p><br>
-    <p id="getapic"></p>
+    <p id="heresthepic"></p>
 </body>
 </html>
 
 <script type="text/javascript">
 
 const loginForm = document.getElementById('login-form')
+const picForm = document.getElementById('pic-form')
 
 loginForm.addEventListener('submit', evt => {
     evt.preventDefault();
@@ -44,10 +47,9 @@ loginForm.addEventListener('submit', evt => {
         .catch(error => { quote.innerHTML = "Can't find a quote :("; } );
     
 });
-loginForm.addEventListener('submit[id="getapic"]', evt => {
+picForm.addEventListener('submit', evt => {
     evt.preventDefault();
-    const getMyPic = document.getElementById('getapic');
-    console.log(getMyPic);
+    var getMyPic = document.getElementById('heresthepic').value;
     fetch('https://picsum.photos/200/300')
     .then(response => response.json())
     .then(data => {
@@ -56,5 +58,5 @@ loginForm.addEventListener('submit[id="getapic"]', evt => {
     })
     .catch(error2 => { getMyPic = "Find me pic please!"; });
 
-})
+});
 </script>
