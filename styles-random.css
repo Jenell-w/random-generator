@@ -1,0 +1,16 @@
+body {
+    background: radial-gradient(white, lightblue);
+}
+
+#random-quote {
+    text-align: center;
+    font-weight: bold;
+    color: cornflowerblue;
+    font-size: 40px;
+}
+
+#author {
+    text-align: center;
+    font-style: italic;
+    font-size: 30px;
+}

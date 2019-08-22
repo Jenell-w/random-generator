@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles-random.css">
+</head>
+<body>
+    <form id='login-form'>
+        <table>
+            <tr>
+                <td>Author</td>
+                <td><input type="text" name="username" /></td>
+            </tr>
+            <tr>
+                <td>Get Random Quote</td>
+                <td><input type="submit"/></td>
+            </tr>
+            <tr>
+                <td>Get a Random Pic</td>
+                <td><input id="getapic" type="submit" value="Get a Pic" /></td>
+            </tr>
+        </table>
+    </form>
+    <p id="random-quote"></p>
+    <p id="author"></p><br>
+    <p id="getapic"></p>
+</body>
+</html>
+
+<script type="text/javascript">
+
+const loginForm = document.getElementById('login-form')
+
+loginForm.addEventListener('submit', evt => {
+    evt.preventDefault();
+    const authorSearch = loginForm.querySelector('input[type="text"]').value;
+    const quote = document.getElementById('random-quote');
+    const author = document.getElementById('author');
+    fetch(`https://api.quotable.io/quotes?author=${authorSearch}`)
+        .then(response => response.json())
+        .then(data => {
+            quote.innerHTML = data.results[0].content;
+            author.innerHTML = data.results[0].author;
+        })
+        .catch(error => { quote.innerHTML = "Can't find a quote :("; } );
+    
+});
+loginForm.addEventListener('submit[id="getapic"]', evt => {
+    evt.preventDefault();
+    const getMyPic = document.getElementById('getapic');
+    console.log(getMyPic);
+    fetch('https://picsum.photos/200/300')
+    .then(response => response.json())
+    .then(data => {
+        getMyPic = data.results[0].url;
+        console.log(getMyPic);
+    })
+    .catch(error2 => { getMyPic = "Find me pic please!"; });
+
+})
+</script>
